@@ -1,3 +1,3 @@
-# test_repo_pak
+# pak_hw_it4fin2019
 
 Home assignments will be published here
