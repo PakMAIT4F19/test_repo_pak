@@ -284,7 +284,7 @@ ON a."ISIN"=b."ISIN"
 WHERE (b."not_null_bid"::real / a."num_bid"::real) >= 0.9
 
 -- e) about platform and regime
--- On github russian letters are krakozyabras, so translit for the last row: WHERE "Platform" = 'Moskovskaya birja ' AND "Section" = ' Osnovnoy'
+-- On github russian letters are sometimes krakozyabras, so translit for the last row: WHERE "Platform" = 'Moskovskaya birja ' AND "Section" = ' Osnovnoy'
 
 SELECT "ISIN", "IssuerName"
 FROM bonds.listing
@@ -292,7 +292,7 @@ WHERE "Platform" = 'Московская Биржа ' AND "Section" = ' Осно
 
 
 -- Final: Megajoin
-SELECT DISTINCT c."ISIN", c."nun_ratio", d."IssuerName"
+SELECT DISTINCT c."ISIN", c."nun_ratio", d."IssuerName" as "Issuer"
 FROM (SELECT DISTINCT a."ISIN", b."not_null_bid"::real / a."num_bid"::real as "nun_ratio"
 	FROM (
 	SELECT "ISIN", count(*) as "num_bid"
