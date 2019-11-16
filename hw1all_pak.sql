@@ -161,11 +161,12 @@ ALTER TABLE bonds.bond_description
     OWNER to postgres;
 
 -- Preapare data in Excel:
--- a) (H) HaveOffer change on numbers format and delete numbers after separator, because in 133th row u have value '01.01.1900' ( = 1 )
--- b) (I) AmortisedMty  change on numbers format and delete numbers after separator, because in 133th row u have value '00.01.1900' ( = 0 ) 00.01.1900
--- c) (K): use formula "\=ЛЕВСИМВ(K133;1)\", cause real value of 00.01.1900 = 0, but it's a text. OR change it on zero
--- d) (AB) GuarantVal change on numbers format and delete numbers after separator
--- e) (AY) EndMtyDate change on format yyyy-mm-dd
+-- a) in settings (click on additionals) change separator from « , » (commas) to « . » (dots) and save as .csv
+-- b) (H) HaveOffer change on numbers format and delete numbers after separator, because in 133th row u have value '01.01.1900' ( = 1 )
+-- c) (I) AmortisedMty  change on numbers format and delete numbers after separator, because in 133th row u have value '00.01.1900' ( = 0 ) 00.01.1900
+-- d) (K): use formula "\=ЛЕВСИМВ(K133;1)\", cause real value of 00.01.1900 = 0, but it's a text. OR change it on zero
+-- e) (AB) GuarantVal change on numbers format and delete numbers after separator
+-- f) (AY) EndMtyDate change on format yyyy-mm-dd
 
 -- While import use WIN1251 and tick headers OR
 
