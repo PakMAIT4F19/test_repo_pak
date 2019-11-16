@@ -4,7 +4,8 @@ Home assignments will be published here
 
 And my comments will be provided. ;-)
 
-# 'hw1_all_pak' is the final file to downlod for checking) I tried
+
+'hw1_all_pak' is the final file to download for checking) I tried
 
 Soft Required:
 •	PostgreSQL database management system
