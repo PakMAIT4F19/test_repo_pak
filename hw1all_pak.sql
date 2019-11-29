@@ -90,6 +90,9 @@ COPY bonds.quotes_task
 FROM '___filepathway___quotes_task.csv'
 DELIMITERS ';' CSV HEADER ENCODING 'WIN 1251'
 
+-- Комментарий:
+-- Копирование в таблицу с неправильным названием.
+
 -- Result: 1047800 rows
 
 -- 1.3. Create table bond_description
@@ -160,6 +163,9 @@ TABLESPACE pg_default;
 ALTER TABLE bonds.bond_description
     OWNER to postgres;
 
+-- Комментарий:
+-- В этом коде CREATE на одно поле больше, чем в импортируемом файле. В описании подготовки данных в Excel следует добавить создание нового поля Issuer_ID. Или создать его позднее в таблице, используя ALTER TABLE ADD COLUMN.
+
 -- Preapare data in Excel:
 -- a) in settings (click on additionals) change separator from « , » (commas) to « . » (dots) and save as .csv
 -- b) (H) HaveOffer change on numbers format and delete numbers after separator, because in 133th row u have value '01.01.1900' ( = 1 )
@@ -174,8 +180,13 @@ COPY bonds.quotes_task
 FROM '___filepathway___bond_description_task.csv'
 DELIMITERS ';' CSV HEADER ENCODING 'WIN 1251'
 
+-- Комментарий:
+-- Копирование данных не в ту таблицу. Должна называть bond_description.
+
 -- Result: 2934 rows
 
+-- Комментарий:
+-- Все команды типа copy должны оканчиваться ";". 
 
 -- 2. Add info to listing
 -- create empty fiels in listing
@@ -197,6 +208,9 @@ alter table bonds.listing
 add column "BOARDID" text, 
 add column "BOARDNAME" text
  
+-- Комментарий:
+-- Отедльные запросы в едином скрипет следует закрывать ";".
+
  -- filling in. use info from bond_description
 UPDATE bonds.listing
 SET "BOARDID" = bonds.quotes."BOARDID",
@@ -235,6 +249,9 @@ ADD CONSTRAINT fr_key_1 FOREIGN KEY ("Issuer_ID") REFERENCES bonds.listing ("ID"
 
 -- In general you can do foreign key to connect bond_description and quotes, but these tables have fields with ISIN,
 -- so it will not be hard to connect them without foreign key
+
+-- Комментарий:
+-- И все-таки таблицы описания бондов и котировок связать по заданию требуется. Кроме того, внешних ключ - это указатель связи данной таблицы с другим, и, видя код одной таблицы, мы может понять, с какими другими она логически связана. Стоит задуматься о полях ID. Возможно придется для создания ключа придется перенести часть информации из quotes в listing. 
 
 --Note: I am not sure in my actions so I will drop waste columns after checking my home assignment
 
@@ -313,4 +330,10 @@ WHERE "Platform" = 'Московская Биржа ' AND "Section" = ' Осно
 ) as d
 ON c."ISIN" = d."ISIN"
 
+--Комментарий:
+-- Все запросы нужно завершать ";".
+
 -- Result: 607 rows affected
+
+-- Комментарий:
+-- Я правда не понял, где участок кода, указывающий на то, что котировки всех облигаций эмитента достаточно часто актуализируются. Плюс, если вспомнить, что count() игнорирует NULL, запрос можно упростить. Наконец, котировка отсутствует не только когда ее значение NULL, но и когда 0.
