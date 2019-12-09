@@ -1,3 +1,5 @@
+-- Added new file with corrections (hw1_pak_with_corrections)and I checked the comment about extra column 'Issuer_ID': deleted this row, but it's created in the 3rd task using alter table add column
+
 -- 1. Import tables
 -- Create new schema "bonds"
 -- 1.1. Create new table listing with primary key ID (it has unique values)
