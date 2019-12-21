@@ -14,4 +14,4 @@ Code is written in PostgreSQL database management system for Windows OS (8, 10).
 
 About other errors, mistakes, comments, recommendations feel free to write me https://vk.com/pak_marina_a or here
 
-# Should I delete intermediate results and commits?
+# Launch all the cells from the beginning even if you want to check only home task 3 or home task 4
